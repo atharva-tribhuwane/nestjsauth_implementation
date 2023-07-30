@@ -20,9 +20,9 @@ export class UserService  {
     ///////////////////////////////////////////
     async createUser(user: User, req, res): Promise<User | string> {
         let iep = await this.blockedipservice.inblocklist(req.ip);
-        if(!iep){
-            return res.status(403).send({ response:"This IP Cannot Access This Endpoint"});
-        }
+        // if(!iep){
+        //     return res.status(403).send({ response:"This IP Cannot Access This Endpoint"});
+        // }
         let usser = await this.userModel.findOne({ email: user.email });
         if (usser) {
             return res.status(409).send({ response: "User Already Exist" })
